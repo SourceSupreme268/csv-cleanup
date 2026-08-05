@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+datasource db {
+  provider = "postgresql"
+}
+model User {
+  id        String   @id
+  email     String   @unique
+  createdAt DateTime @default(now())
+  files Cleanup[]
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model Cleanup {
+  fileName     String
+  rows         Int
+  duplicates   Int
+  errorsFixed  Int
+  status       CleanupStatus @default(PROCESSING)
+  createdAt    DateTime      @default(now())
+  expiresAt    DateTime      @default(dbgenerated("now() + interval '30 days'"))
+  cleanedData  String?       @db.Text
+
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+
+
+enum CleanupStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+}
