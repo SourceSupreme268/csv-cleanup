@@ -27,7 +27,7 @@ export default function RootLayout({
           colorTextSecondary: "#a3a3a3",
           colorNeutral: "#ffffff",
           borderRadius: "0.75rem",
-        },
+        } as Record<string, string>,
       }}
     >
       <html lang="en">

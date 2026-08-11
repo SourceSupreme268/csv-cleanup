@@ -42,12 +42,16 @@ export async function GET(
     value: key,
   }));
 
-  const buffer = xlsx(
+
+
+const buffer = xlsx(
     [{ sheet: "Cleaned Data", columns, content: rows }],
     { writeOptions: { type: "buffer", bookType: "xlsx" } }
-  ) as unknown as Buffer;
+  ) as Buffer;
 
-  return new NextResponse(buffer, {
+  const arrayBuffer = new Uint8Array(buffer);
+
+  return new NextResponse(arrayBuffer, {
     headers: {
       "Content-Type":
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
