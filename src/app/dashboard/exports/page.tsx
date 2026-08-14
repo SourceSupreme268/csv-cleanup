@@ -40,24 +40,41 @@ export default async function ExportsPage() {
       ) : (
         <div className="space-y-3">
           {cleanups.map((c) => (
-            <div
-              key={c.id}
-              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4"
-            >
-              <div className="flex items-center gap-3">
-                <FileSpreadsheet className="h-4 w-4 text-emerald-400" />
-                <div>
-                  <p className="text-sm text-white">{c.fileName}</p>
-                  <p className="text-xs text-neutral-500">
-                    {c.rows.toLocaleString()} rows · {daysLeft(c.expiresAt)}d left
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                  <ExportDownloadLink id={c.id} fileName={c.fileName} />
-                <DeleteCleanupButton id={c.id} />
-              </div>
+            // <div
+            //   key={c.id}
+            //   className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4"
+            // >
+            //   <div className="flex items-center gap-3">
+            //     <FileSpreadsheet className="h-4 w-4 text-emerald-400" />
+            //     <div>
+            //       <p className="text-sm text-white">{c.fileName}</p>
+            //       <p className="text-xs text-neutral-500">
+            //         {c.rows.toLocaleString()} rows · {daysLeft(c.expiresAt)}d left
+            //       </p>
+            //     </div>
+            //   </div>
+            //   <div className="flex items-center gap-2">
+            //       <ExportDownloadLink id={c.id} fileName={c.fileName} />
+            //     <DeleteCleanupButton id={c.id} />
+            //   </div>
+            // </div>
+
+            <div key={c.id} className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 items-center gap-3">
+                <FileSpreadsheet className="h-4 w-4 shrink-0 text-emerald-400" />
+                <div className="min-w-0">
+                <p className="truncate text-sm text-white">{c.fileName}</p>
+                <p className="text-xs text-neutral-500">
+                {c.rows.toLocaleString()} rows · {daysLeft(c.expiresAt)}d left
+                </p>
             </div>
+            </div>
+            <div className="flex items-center justify-end gap-3">
+              <ExportDownloadLink id={c.id} fileName={c.fileName} />
+              <DeleteCleanupButton id={c.id} />
+            </div>
+            </div>
+
           ))}
         </div>
       )}

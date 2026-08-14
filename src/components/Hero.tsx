@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Sparkles, ArrowRight, PlayCircle } from "lucide-react";
+import AuthLinkSpinner from "./AuthLinkSpinner";
 
 export default function Hero() {
   return (
@@ -21,13 +22,15 @@ export default function Hero() {
       </p>
 
       <div className="mt-8 flex items-center justify-center gap-4">
-        <Link
-          href="/sign-up"
-          className="flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
-        >
-          Start cleaning for free
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+<Link
+  href="/sign-up"
+  prefetch={false}
+  className="flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
+>
+  Start cleaning for free
+  <AuthLinkSpinner />
+  <ArrowRight className="h-4 w-4" />
+</Link>
         {/* <Link
           href="#"
           className="flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"

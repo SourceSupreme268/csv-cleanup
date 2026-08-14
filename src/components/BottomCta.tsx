@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import AuthLinkSpinner from "./AuthLinkSpinner";
 
 export default function BottomCta() {
   return (
@@ -12,13 +13,15 @@ export default function BottomCta() {
           <p className="mt-2 text-sm text-neutral-400">
             Join thousands of teams saving hours every week.
           </p>
-          <Link
-            href="/sign-up"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
-          >
-            Start cleaning for free
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+<Link
+  href="/sign-up"
+  prefetch={false}
+  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
+>
+  Start cleaning for free
+  <AuthLinkSpinner />
+  <ArrowRight className="h-4 w-4" />
+</Link>
           <p className="mt-3 text-xs text-neutral-500">No credit card required</p>
         </div>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { navLinks } from "@/data/nav-links";
+import AuthLinkSpinner from "./AuthLinkSpinner";
 
 export default function Navbar() {
   return (
@@ -38,17 +39,24 @@ export default function Navbar() {
   ))}
 </ul>
 
-        <div className="flex items-center gap-4 text-sm">
-          <Link href="/sign-in" className="text-neutral-300 transition hover:text-white">
-            Sign in
-          </Link>
-          <Link
-            href="/sign-up"
-            className="rounded-lg bg-emerald-500 px-4 py-2 font-medium text-black transition hover:bg-emerald-400"
-          >
-            Get started
-          </Link>
-        </div>
+<div className="flex items-center gap-4 text-sm">
+  <Link
+    href="/sign-in"
+    prefetch={false}
+    className="flex items-center gap-1.5 text-neutral-300 transition hover:text-white"
+  >
+    Sign in
+    <AuthLinkSpinner />
+  </Link>
+  <Link
+    href="/sign-up"
+    prefetch={false}
+    className="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-4 py-2 font-medium text-black transition hover:bg-emerald-400"
+  >
+    Get started
+    <AuthLinkSpinner />
+  </Link>
+</div>
       </nav>
     </header>
   );
